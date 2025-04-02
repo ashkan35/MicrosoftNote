@@ -7,12 +7,12 @@ namespace MicrosoftNote.ViewModels
 {
     internal class NotesViewModel:IQueryAttributable
     {
-        public ObservableCollection<ViewModels.NoteViewModel> AllNotes { get; }
+        public ObservableCollection<NoteViewModel> AllNotes { get; }
         public ICommand NewCommand { get; }
         public ICommand SelectNoteCommand { get; }
         public NotesViewModel()
         {
-            AllNotes = new ObservableCollection<ViewModels.NoteViewModel>(Models.Note.LoadAll().Select(n => new NoteViewModel(n)));
+            AllNotes = new ObservableCollection<NoteViewModel>(Note.LoadAll().Select(n => new NoteViewModel(n)));
             NewCommand = new AsyncRelayCommand(NewNoteAsync);
             SelectNoteCommand = new AsyncRelayCommand<ViewModels.NoteViewModel>(SelectNoteAsync);
         }
@@ -21,7 +21,7 @@ namespace MicrosoftNote.ViewModels
             await Shell.Current.GoToAsync(nameof(Views.NotePage));
         }
 
-        private async Task SelectNoteAsync(ViewModels.NoteViewModel note)
+        private async Task SelectNoteAsync(NoteViewModel note)
         {
             if (note != null)
                 await Shell.Current.GoToAsync($"{nameof(Views.NotePage)}?load={note.Identifier}");
