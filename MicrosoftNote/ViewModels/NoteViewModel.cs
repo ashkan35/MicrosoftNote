@@ -12,11 +12,13 @@ namespace MicrosoftNote.ViewModels
         public string Identifier => _note.Filename;
         public ICommand SaveCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
+        public ICommand CancelCommand { get; private set; }
         public NoteViewModel()
         {
             _note = new Note();
             SaveCommand = new AsyncRelayCommand(Save);
             DeleteCommand = new AsyncRelayCommand(Delete);
+            CancelCommand = new AsyncRelayCommand(Cancel);
         }
 
         public NoteViewModel(Note note)
@@ -24,6 +26,7 @@ namespace MicrosoftNote.ViewModels
             _note = note;
             SaveCommand = new AsyncRelayCommand(Save);
             DeleteCommand = new AsyncRelayCommand(Delete);
+            CancelCommand = new AsyncRelayCommand(Cancel);
         }
         private Models.Note _note;
         public string Text
@@ -39,7 +42,11 @@ namespace MicrosoftNote.ViewModels
             }
         }
 
-       
+        private async Task Cancel()
+        {
+           
+            await Shell.Current.GoToAsync($"..");
+        }
         private async Task Save()
         {
             _note.Date = DateTime.Now;

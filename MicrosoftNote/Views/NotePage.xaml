@@ -21,6 +21,11 @@
             <Button Grid.Column="1"
                     Text="Delete"
                     Command="{Binding DeleteCommand}" />
+          
         </Grid>
+        <Button 
+                Text="Cancel"
+                Command="{Binding CancelCommand}" />
+
     </VerticalStackLayout>
 </ContentPage>
