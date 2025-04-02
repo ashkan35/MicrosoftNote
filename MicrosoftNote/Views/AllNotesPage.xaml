@@ -19,7 +19,9 @@
                     Margin="20"
                     SelectionMode="Single"
                     SelectionChangedCommand="{Binding SelectNoteCommand}"
-                    SelectionChangedCommandParameter="{Binding x:DataType='CollectionView', Source={RelativeSource Self}, Path=SelectedItem}">
+                    SelectionChangedCommandParameter="{Binding x:DataType='CollectionView', Source={RelativeSource Self}, Path=SelectedItem}"
+                    
+                    >
                     
 
         <!-- Designate how the collection of items are laid out -->
